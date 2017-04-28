@@ -1,7 +1,5 @@
-#!/bin/bash
 #
-# Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +14,15 @@
 # limitations under the License.
 #
 
-set -e
+# Inherit from m8 device
+$(call inherit-product, device/htc/m8/device.mk)
 
-export DEVICE=m8
-export DEVICE_COMMON=m8-common
-export VENDOR=htc
+# Inherit some common Lineage stuff.
+$(call inherit-product, vendor/hexagon/configs/common.mk)
 
-export DEVICE_BRINGUP_YEAR=2014
-
-./../$DEVICE_COMMON/setup-makefiles.sh $@
+# Device identifier. This must come after all inclusions.
+PRODUCT_NAME := hexagon_m8
+PRODUCT_DEVICE := m8
+PRODUCT_BRAND := htc
+PRODUCT_MANUFACTURER := htc
+PRODUCT_MODEL := One M8
